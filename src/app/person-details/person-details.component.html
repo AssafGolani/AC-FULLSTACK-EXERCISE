@@ -1,1 +1,49 @@
-<p>person-details works!</p>
+<div *ngIf="person" class="details">
+  <mat-card class="details-card">
+    <mat-card-title
+      >{{ person.FirstName }} {{ person.LastName }}</mat-card-title
+    >
+    <mat-card-content>
+      <p>ID: {{ person.ID }}</p>
+      <p>Age: {{ person.Age }}</p>
+      <p>Height: {{ person.Height }} cm</p>
+      <p>Weight: {{ person.Weight }} kg</p>
+      <p *ngIf="bmi">BMI: {{ bmi | number : "1.1-1" }}</p>
+
+      <div *ngIf="heartRateData">
+        <p>
+          First minute sleeping:
+          {{
+            heartRateData.firstMinuteSleeping
+              ? heartRateData.firstMinuteSleeping
+              : "No data detected"
+          }}
+        </p>
+        <p>
+          First minute awake:
+          {{
+            heartRateData.firstMinuteAwake
+              ? heartRateData.firstMinuteAwake
+              : "No data detected"
+          }}
+        </p>
+        <p>
+          First minute workout:
+          {{
+            heartRateData.firstMinuteWorkout
+              ? heartRateData.firstMinuteWorkout
+              : "No data detected"
+          }}
+        </p>
+        <p>
+          Average heart rate:
+          {{
+            heartRateData.averageHeartRate
+              ? heartRateData.averageHeartRate
+              : "No data detected"
+          }}
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
