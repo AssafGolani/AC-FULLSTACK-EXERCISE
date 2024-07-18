@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -16,31 +17,41 @@ import { Person } from '../../models/person.model';
   templateUrl: './person-list.component.html',
   styleUrl: './person-list.component.css',
 })
-export class PersonListComponent {
+export class PersonListComponent implements OnChanges {
   @Input() people: Person[] | null = [];
   @Input() sortBy: string | null = null;
+  @Input() searchQuery: string | null = null;
   @Output() personSelected = new EventEmitter<Person>();
 
-  sortedPeople: Person[] | null = [];
+  filteredPeople: Person[] | null = [];
 
   selectPerson(person: Person) {
     this.personSelected.emit(person);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['people'] || changes['sortBy']) {
-      this.sortPeople();
+    if (changes['people'] || changes['sortBy'] || changes['searchQuery']) {
+      this.filterAndSortPeople();
     }
   }
 
-  sortPeople() {
+  filterAndSortPeople() {
     if (this.people) {
-      this.sortedPeople = [...this.people];
-      if (this.sortBy === 'lastName') {
-        this.sortedPeople.sort((a, b) => a.LastName.localeCompare(b.LastName));
-      } else if (this.sortBy === 'age') {
-        this.sortedPeople.sort((a, b) => a.Age - b.Age);
+      let filtered = [...this.people];
+      if (this.searchQuery) {
+        const query = this.searchQuery.toLowerCase();
+        filtered = filtered.filter(
+          (person) =>
+            person.FirstName.toLowerCase().includes(query) ||
+            person.LastName.toLowerCase().includes(query)
+        );
       }
+      if (this.sortBy === 'lastName') {
+        filtered.sort((a, b) => a.LastName.localeCompare(b.LastName));
+      } else if (this.sortBy === 'age') {
+        filtered.sort((a, b) => a.Age - b.Age);
+      }
+      this.filteredPeople = filtered;
     }
   }
 }
