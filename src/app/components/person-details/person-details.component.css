@@ -1,8 +1,12 @@
-.details {
+.app-person-details-card {
+  padding: 20px;
+  margin: 0 auto;
   width: 100%;
-  margin-top: 20px;
+  max-width: 500px;
 }
 
-.details-card {
-  width: 100%;
+@media (max-width: 768px) {
+  .app-person-details-card {
+    padding: 10px;
+  }
 }
