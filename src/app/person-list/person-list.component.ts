@@ -11,7 +11,7 @@ import { Person } from '../models/person.model';
   styleUrl: './person-list.component.css',
 })
 export class PersonListComponent {
-  @Input() people: Person[] = [];
+  @Input() people: Person[] | null = [];
   @Output() personSelected = new EventEmitter<Person>();
 
   selectPerson(person: Person) {

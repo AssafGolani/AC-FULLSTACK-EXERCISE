@@ -2,12 +2,12 @@
 
 <div class="container">
   <app-person-list
-    [people]="people"
+    [people]="people$ | async"
     (personSelected)="togglePerson($event)"
   ></app-person-list>
   <app-person-details
-    [person]="selectedPerson"
-    [heartRateData]="heartRateData"
-    [bmi]="bmi"
+    [person]="selectedPerson$ | async"
+    [heartRateData]="heartRateData$ | async"
+    [bmi]="bmi$ | async"
   ></app-person-details>
 </div>
