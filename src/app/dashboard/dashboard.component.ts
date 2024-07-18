@@ -2,11 +2,10 @@ import { Component, inject, OnInit } from '@angular/core';
 import { HeartRateData, Person } from '../models/person.model';
 import { PeopleService } from '../services/people.service';
 import { CommonModule } from '@angular/common';
-import { Status } from '../enums/status.enum';
 import { PersonDetailsComponent } from '../person-details/person-details.component';
 import { PersonListComponent } from '../person-list/person-list.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
-import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +21,6 @@ import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
   private peopleService: PeopleService = inject(PeopleService);
-  private subscription: Subscription = new Subscription();
   people$: Observable<Person[]> | undefined;
   selectedPerson$: Observable<Person | null> | undefined;
   heartRateData$: Observable<HeartRateData | null> | undefined;
@@ -49,10 +47,6 @@ export class DashboardComponent implements OnInit {
           : null
       )
     );
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   togglePerson(person: Person) {
