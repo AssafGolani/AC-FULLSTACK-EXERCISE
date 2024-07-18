@@ -34,6 +34,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   attemptsCounter = 0;
   lockoutTime = 0;
+  lockoutMessage = '';
 
   constructor() {
     this.loginForm = this.fb.group({
@@ -50,6 +51,7 @@ export class LoginComponent {
       this.attemptsCounter++;
       if (this.attemptsCounter >= 3) {
         this.lockoutTime = Date.now() + 60000; // lockout for 1 minute
+        this.updateLockoutMessage();
         alert('Too many failed attempts. Please try again later.');
       } else {
         alert('Invalid credentials');
@@ -63,5 +65,16 @@ export class LoginComponent {
 
   get lockoutRemaining(): number {
     return Math.max(0, Math.ceil((this.lockoutTime - Date.now()) / 1000));
+  }
+
+  updateLockoutMessage(): void {
+    const remainingTime = this.lockoutTime - Date.now();
+    if (remainingTime > 0) {
+      const minutes = Math.floor(remainingTime / 60000);
+      const seconds = Math.floor((remainingTime % 60000) / 1000);
+      this.lockoutMessage = `Locked out. Try again in ${minutes}m ${seconds}s.`;
+    } else {
+      this.lockoutMessage = '';
+    }
   }
 }

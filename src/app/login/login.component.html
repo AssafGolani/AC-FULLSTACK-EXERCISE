@@ -27,6 +27,6 @@
     Login
   </button>
   <div *ngIf="isLockedOut">
-    <p>Locked out. Try again in {{ lockoutTime }} seconds.</p>
+    <p>{{ lockoutMessage }}</p>
   </div>
 </form>
