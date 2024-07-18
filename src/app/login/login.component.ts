@@ -40,7 +40,20 @@ export class LoginComponent {
     });
   }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    const { username, password } = this.loginForm.value;
+    if (this.authService.login(username, password)) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.attemptsCounter++;
+      if (this.attemptsCounter >= 3) {
+        this.lockoutTime = Date.now() + 60000; // lockout for 1 minute
+        alert('Too many failed attempts. Please try again later.');
+      } else {
+        alert('Invalid credentials');
+      }
+    }
+  }
 
   get isLockedOut(): boolean {
     return this.lockoutTime > Date.now();
