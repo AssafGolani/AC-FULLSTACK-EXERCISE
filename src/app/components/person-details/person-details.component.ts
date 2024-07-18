@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { HeartRateData, Person } from '../models/person.model';
+import { HeartRateData, Person } from '../../models/person.model';
 
 @Component({
   selector: 'app-person-details',

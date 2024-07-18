@@ -10,8 +10,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { AuthService } from '../../services/auth.service';
+import { ToolbarComponent } from '../../common/toolbar/toolbar.component';
 
 @Component({
   selector: 'app-login',

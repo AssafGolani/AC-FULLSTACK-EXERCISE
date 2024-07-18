@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { Person } from '../models/person.model';
+import { Person } from '../../models/person.model';
 
 @Component({
   selector: 'app-person-list',

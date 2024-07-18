@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { HeartRateData, Person } from '../models/person.model';
-import { PeopleService } from '../services/people.service';
+import { HeartRateData, Person } from '../../models/person.model';
+import { PeopleService } from '../../services/people.service';
 import { CommonModule } from '@angular/common';
 import { PersonDetailsComponent } from '../person-details/person-details.component';
 import { PersonListComponent } from '../person-list/person-list.component';
-import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { ToolbarComponent } from '../../common/toolbar/toolbar.component';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { SortControlComponent } from '../sort-control/sort-control.component';
+import { SortControlComponent } from '../../common/sort-control/sort-control.component';
 
 @Component({
   selector: 'app-dashboard',
