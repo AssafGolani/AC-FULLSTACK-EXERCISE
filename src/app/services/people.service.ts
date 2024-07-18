@@ -7,7 +7,7 @@ import { Status } from '../enums/status.enum';
 @Injectable({
   providedIn: 'root',
 })
-export class AccessDbService {
+export class PeopleService {
   private http: HttpClient = inject(HttpClient);
   private apiUrl = '/api/rest/mypeople';
   constructor() {}
