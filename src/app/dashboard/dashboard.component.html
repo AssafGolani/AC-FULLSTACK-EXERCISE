@@ -1,1 +1,44 @@
-<p>dashboard works!</p>
+<mat-toolbar color="primary">
+  <span>Dashboard</span>
+  <span class="spacer"></span>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+
+<div class="container">
+  <mat-card
+    *ngFor="let person of people"
+    class="person-card"
+    (click)="togglePerson(person)"
+  >
+    <mat-card-title
+      >{{ person.FirstName }} {{ person.LastName }}</mat-card-title
+    >
+    <mat-card-content>
+      <p>ID: {{ person.ID }}</p>
+      <p>Age: {{ person.Age }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <div *ngIf="selectedPerson" class="details">
+    <mat-card class="details-card">
+      <mat-card-title
+        >{{ selectedPerson.FirstName }}
+        {{ selectedPerson.LastName }}</mat-card-title
+      >
+      <mat-card-content>
+        <p>ID: {{ selectedPerson.ID }}</p>
+        <p>Age: {{ selectedPerson.Age }}</p>
+        <p>Height: {{ selectedPerson.Height }} cm</p>
+        <p>Weight: {{ selectedPerson.Weight }} kg</p>
+        <p *ngIf="bmi">BMI: {{ bmi | number : "1.1-1" }}</p>
+
+        <div *ngIf="heartRateData">
+          <p>First minute sleeping: {{ heartRateData.firstMinuteSleeping }}</p>
+          <p>First minute awake: {{ heartRateData.firstMinuteAwake }}</p>
+          <p>First minute workout: {{ heartRateData.firstMinuteWorkout }}</p>
+          <p>Average heart rate: {{ heartRateData.averageHeartRate }}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
