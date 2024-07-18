@@ -1,7 +1,32 @@
 .person-card {
-  margin-bottom: 20px;
+  background: linear-gradient(135deg, #0777e0, #0f03bbd7);
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  transition: transform 0.2s;
 }
 
+.person-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.mat-card-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.mat-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mat-card-content p {
+  margin: 0;
+}
 @media (max-width: 768px) {
   .person-card {
     margin-bottom: 20px;
