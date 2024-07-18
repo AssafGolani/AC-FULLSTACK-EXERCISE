@@ -1,5 +1,8 @@
 <mat-toolbar color="primary">
-  <span>Dashboard</span>
+  <span *ngIf="isLoggedIn; else welcomeText">Dashboard</span>
+  <ng-template #welcomeText>
+    <span>Welcome to HeartRate app</span>
+  </ng-template>
   <span class="spacer"></span>
-  <button mat-button (click)="logout()">Logout</button>
+  <button *ngIf="isLoggedIn" mat-button (click)="logout()">Logout</button>
 </mat-toolbar>
