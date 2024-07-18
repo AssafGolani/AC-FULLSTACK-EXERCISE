@@ -1,4 +1,14 @@
-mat-form-field {
+.full-width {
   width: 100%;
   margin-bottom: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .full-width {
+    margin-bottom: 10px;
+  }
 }
