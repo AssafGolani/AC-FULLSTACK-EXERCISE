@@ -8,10 +8,15 @@ import { Person } from '../models/person.model';
 })
 export class AccessDbService {
   private http: HttpClient = inject(HttpClient);
-  private apiUrl = 'https://healthrate-6cb6.restdb.io/rest/test-db';
+  private apiUrl = '/api/rest/mypeople';
   constructor() {}
 
   getPersonData(): Observable<Person[]> {
-    return this.http.get<Person[]>(this.apiUrl);
+    return this.http.get<Person[]>(this.apiUrl, {
+      headers: {
+        'cache-control': 'no-cache',
+        'x-apikey': 'f534b6365ca29a799b267c496ba312d4247d9',
+      },
+    });
   }
 }
