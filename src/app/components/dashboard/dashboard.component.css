@@ -12,6 +12,15 @@ body {
   align-items: center;
 }
 
+.controls-container {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .dashboard-content {
   display: flex;
   gap: 20px;
@@ -20,9 +29,9 @@ body {
   align-items: flex-start;
 }
 
-app-sort-control {
-  width: 100%;
-  max-width: 400px;
+app-sort-control,
+app-search-control {
+  flex: 1;
 }
 
 app-person-list {

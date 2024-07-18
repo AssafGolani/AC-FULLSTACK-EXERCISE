@@ -1,10 +1,12 @@
 <app-toolbar></app-toolbar>
 
 <div class="dashboard-container">
-  <app-sort-control (sortChanged)="onSortChange($event)"></app-sort-control>
-  <app-search-control
-    (searchChanged)="onSearchQueryChange($event)"
-  ></app-search-control>
+  <div class="controls-container">
+    <app-search-control
+      (searchChanged)="onSearchQueryChange($event)"
+    ></app-search-control>
+    <app-sort-control (sortChanged)="onSortChange($event)"></app-sort-control>
+  </div>
 
   <div class="dashboard-content">
     <app-person-list
