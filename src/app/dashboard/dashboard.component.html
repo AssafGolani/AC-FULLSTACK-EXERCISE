@@ -1,13 +1,19 @@
 <app-toolbar></app-toolbar>
 
-<div class="container">
-  <app-person-list
-    [people]="people$ | async"
-    (personSelected)="togglePerson($event)"
-  ></app-person-list>
-  <app-person-details
-    [person]="selectedPerson$ | async"
-    [heartRateData]="heartRateData$ | async"
-    [bmi]="bmi$ | async"
-  ></app-person-details>
+<div class="dashboard-container">
+  <app-sort-control (sortChanged)="onSortChange($event)"></app-sort-control>
+
+  <div class="dashboard-content">
+    <app-person-list
+      [people]="people$ | async"
+      [sortBy]="sortBy"
+      (personSelected)="togglePerson($event)"
+    ></app-person-list>
+
+    <app-person-details
+      [person]="selectedPerson$ | async"
+      [heartRateData]="heartRateData$ | async"
+      [bmi]="bmi$ | async"
+    ></app-person-details>
+  </div>
 </div>
