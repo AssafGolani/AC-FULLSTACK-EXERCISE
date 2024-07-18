@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private router: Router = inject(Router);
   private readonly _isLoggedIn$ = new BehaviorSubject<boolean>(this.hasToken());
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
@@ -24,6 +26,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     this._isLoggedIn$.next(false);
+    this.router.navigate(['/login']);
   }
 
   private hasToken(): boolean {
