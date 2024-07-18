@@ -1,0 +1,7 @@
+<div *ngIf="person">
+  <p>ID: {{ person.ID }}</p>
+  <p>Age: {{ person.Age }}</p>
+  <p>Height: {{ person.Height }} cm</p>
+  <p>Weight: {{ person.Weight }} kg</p>
+  <p *ngIf="bmi">BMI: {{ bmi | number : "1.1-1" }}</p>
+</div>
