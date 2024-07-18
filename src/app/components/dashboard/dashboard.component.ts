@@ -7,6 +7,7 @@ import { PersonListComponent } from '../person-list/person-list.component';
 import { ToolbarComponent } from '../../common/toolbar/toolbar.component';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { SortControlComponent } from '../../common/sort-control/sort-control.component';
+import { SearchControlComponent } from '../../common/search-control/search-control.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,7 @@ import { SortControlComponent } from '../../common/sort-control/sort-control.com
     PersonDetailsComponent,
     ToolbarComponent,
     SortControlComponent,
+    SearchControlComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
@@ -28,6 +30,7 @@ export class DashboardComponent implements OnInit {
   heartRateData$: Observable<HeartRateData | null> | undefined;
   bmi$: Observable<number | null> | undefined;
   sortBy: string | null = null;
+  searchQuery: string | null = null;
 
   private selectedPersonSubject = new BehaviorSubject<Person | null>(null);
 
@@ -56,6 +59,10 @@ export class DashboardComponent implements OnInit {
     this.selectedPersonSubject.next(
       this.selectedPersonSubject.value === person ? null : person
     );
+  }
+
+  onSearchQueryChange(query: string) {
+    this.searchQuery = query;
   }
 
   onSortChange(sortOption: string) {

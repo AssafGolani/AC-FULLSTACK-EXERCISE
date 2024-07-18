@@ -2,11 +2,15 @@
 
 <div class="dashboard-container">
   <app-sort-control (sortChanged)="onSortChange($event)"></app-sort-control>
+  <app-search-control
+    (searchChanged)="onSearchQueryChange($event)"
+  ></app-search-control>
 
   <div class="dashboard-content">
     <app-person-list
       [people]="people$ | async"
       [sortBy]="sortBy"
+      [searchQuery]="searchQuery"
       (personSelected)="togglePerson($event)"
     ></app-person-list>
 
