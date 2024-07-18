@@ -33,10 +33,38 @@
         <p *ngIf="bmi">BMI: {{ bmi | number : "1.1-1" }}</p>
 
         <div *ngIf="heartRateData">
-          <p>First minute sleeping: {{ heartRateData.firstMinuteSleeping }}</p>
-          <p>First minute awake: {{ heartRateData.firstMinuteAwake }}</p>
-          <p>First minute workout: {{ heartRateData.firstMinuteWorkout }}</p>
-          <p>Average heart rate: {{ heartRateData.averageHeartRate }}</p>
+          <p>
+            First minute sleeping:
+            {{
+              heartRateData.firstMinuteSleeping
+                ? heartRateData.firstMinuteSleeping
+                : "No data detected"
+            }}
+          </p>
+          <p>
+            First minute awake:
+            {{
+              heartRateData.firstMinuteAwake
+                ? heartRateData.firstMinuteAwake
+                : "No data detected"
+            }}
+          </p>
+          <p>
+            First minute workout:
+            {{
+              heartRateData.firstMinuteWorkout
+                ? heartRateData.firstMinuteWorkout
+                : "No data detected"
+            }}
+          </p>
+          <p>
+            Average heart rate:
+            {{
+              heartRateData.averageHeartRate
+                ? heartRateData.averageHeartRate
+                : "No data detected"
+            }}
+          </p>
         </div>
       </mat-card-content>
     </mat-card>

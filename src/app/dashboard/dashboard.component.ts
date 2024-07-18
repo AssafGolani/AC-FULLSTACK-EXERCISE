@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
       firstMinuteSleeping,
       firstMinuteAwake,
       firstMinuteWorkout,
-      averageHeartRate: totalHeartRate / heartRates.length,
+      averageHeartRate: +(totalHeartRate / heartRates.length).toFixed(2),
     };
   }
 
