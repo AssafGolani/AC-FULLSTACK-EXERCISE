@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +12,7 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ToolbarComponent } from '../../common/toolbar/toolbar.component';
+import { interval } from 'rxjs/internal/observable/interval';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,7 @@ import { ToolbarComponent } from '../../common/toolbar/toolbar.component';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   private fb: FormBuilder = inject(FormBuilder);
   private router: Router = inject(Router);
   private authService: AuthService = inject(AuthService);
@@ -41,6 +42,18 @@ export class LoginComponent {
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
+
+    interval(1000).subscribe(() => {
+      this.updateLockoutMessage();
+    });
+  }
+
+  ngOnInit(): void {
+    const storedLockoutTime = localStorage.getItem('lockoutTime');
+    if (storedLockoutTime) {
+      this.lockoutTime = parseInt(storedLockoutTime, 10);
+    }
+    this.updateLockoutMessage();
   }
 
   onSubmit(): void {
@@ -51,6 +64,7 @@ export class LoginComponent {
       this.attemptsCounter++;
       if (this.attemptsCounter >= 3) {
         this.lockoutTime = Date.now() + 60000; // lockout for 1 minute
+        localStorage.setItem('lockoutTime', this.lockoutTime.toString());
         this.updateLockoutMessage();
         alert('Too many failed attempts. Please try again later.');
       } else {
