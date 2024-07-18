@@ -8,16 +8,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Status } from '../enums/status.enum';
+import { PersonDetailsComponent } from '../person-details/person-details.component';
+import { PersonListComponent } from '../person-list/person-list.component';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
     CommonModule,
-    MatListModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatCardModule,
+    PersonListComponent,
+    PersonDetailsComponent,
+    ToolbarComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
@@ -90,9 +92,5 @@ export class DashboardComponent implements OnInit {
     this.selectedPerson = person;
     this.heartRateData = this.calculateHeartRateData(person.HeartRate);
     this.bmi = this.calculateBMI(person.Weight, person.Height);
-  }
-
-  logout(): void {
-    this.authService.logout();
   }
 }
