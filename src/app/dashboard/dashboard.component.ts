@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { HeartRateData, Person } from '../models/person.model';
 import { AccessDbService } from '../services/access-db.service';
 import { AuthService } from '../services/auth.service';
