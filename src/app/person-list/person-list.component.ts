@@ -1,12 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { Person } from '../models/person.model';
 
 @Component({
   selector: 'app-person-list',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, MatCardModule],
   templateUrl: './person-list.component.html',
-  styleUrl: './person-list.component.css'
+  styleUrl: './person-list.component.css',
 })
 export class PersonListComponent {
+  @Input() people: Person[] = [];
+  @Output() personSelected = new EventEmitter<Person>();
 
+  selectPerson(person: Person) {
+    this.personSelected.emit(person);
+  }
 }

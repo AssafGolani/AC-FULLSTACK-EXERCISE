@@ -1,1 +1,11 @@
-<p>person-list works!</p>
+<mat-card
+  *ngFor="let person of people"
+  class="person-card"
+  (click)="selectPerson(person)"
+>
+  <mat-card-title>{{ person.FirstName }} {{ person.LastName }}</mat-card-title>
+  <mat-card-content>
+    <p>ID: {{ person.ID }}</p>
+    <p>Age: {{ person.Age }}</p>
+  </mat-card-content>
+</mat-card>
