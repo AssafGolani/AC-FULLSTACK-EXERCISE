@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HeartRateData, Person } from '../../models/person.model';
 import { HeartRateInfoComponent } from '../heart-rate-info/heart-rate-info.component';
 import { PersonInfoComponent } from '../person-info/person-info.component';
+import { slideInOutAnimation } from '../../animations';
 
 @Component({
   selector: 'app-person-details',
@@ -16,6 +17,7 @@ import { PersonInfoComponent } from '../person-info/person-info.component';
   ],
   templateUrl: './person-details.component.html',
   styleUrl: './person-details.component.css',
+  animations: [slideInOutAnimation],
 })
 export class PersonDetailsComponent {
   @Input() person: Person | null = null;
