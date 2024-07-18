@@ -1,32 +1,46 @@
 <app-toolbar></app-toolbar>
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <input
-      matInput
-      placeholder="Username"
-      formControlName="username"
-      [attr.disabled]="isLockedOut ? '' : null"
-    />
-  </mat-form-field>
-  <mat-form-field>
-    <input
-      matInput
-      placeholder="Password"
-      type="password"
-      formControlName="password"
-      [attr.disabled]="isLockedOut ? '' : null"
-    />
-  </mat-form-field>
-  <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    [disabled]="isLockedOut"
-  >
-    Login
-  </button>
-  <div *ngIf="isLockedOut">
-    <p>{{ lockoutMessage }}</p>
+<div class="login-container">
+  <div class="form-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          placeholder="Username"
+          formControlName="username"
+          required
+          [attr.disabled]="isLockedOut ? '' : null"
+        />
+        <mat-error *ngIf="loginForm.controls['username'].hasError('required')"
+          >Username is required</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          placeholder="Password"
+          type="password"
+          formControlName="password"
+          required
+          [attr.disabled]="isLockedOut ? '' : null"
+        />
+        <mat-error *ngIf="loginForm.controls['password'].hasError('required')"
+          >Password is required</mat-error
+        >
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="isLockedOut"
+      >
+        Login
+      </button>
+      <div *ngIf="isLockedOut" class="lockout-message">
+        <p>{{ lockoutMessage }}</p>
+      </div>
+    </form>
   </div>
-</form>
+</div>
