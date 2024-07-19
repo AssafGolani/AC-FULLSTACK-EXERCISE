@@ -1,6 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  finalize,
+  Observable,
+  tap,
+  throwError,
+} from 'rxjs';
 import { HeartRateData, Person } from '../models/person.model';
 import { Status } from '../enums/status.enum';
 import { environment } from '../../environments/environment';
@@ -11,15 +18,25 @@ import { environment } from '../../environments/environment';
 export class PeopleService {
   private http: HttpClient = inject(HttpClient);
   private apiUrl = environment.apiUrl + '/rest/mypeople';
+
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  loading$ = this.loadingSubject.asObservable();
+
   constructor() {}
 
   getPersonData(): Observable<Person[]> {
-    return this.http.get<Person[]>(this.apiUrl, {
-      headers: {
-        'cache-control': 'no-cache',
-        'x-apikey': environment.apiKey,
-      },
+    const headers = new HttpHeaders({
+      'cache-control': 'no-cache',
+      'x-apikey': environment.apiKey,
     });
+    return this.http.get<Person[]>(this.apiUrl, { headers }).pipe(
+      tap(() => this.loadingSubject.next(true)),
+      finalize(() => this.loadingSubject.next(false)),
+      catchError((error) => {
+        this.loadingSubject.next(false);
+        return throwError(error);
+      })
+    );
   }
 
   calculateHeartRateData(heartRateString: string): HeartRateData {
