@@ -2,13 +2,12 @@
   "name": "full-stack-exercise",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve --configuration production",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "start-prod": "env-cmd -e production ng serve --host 0.0.0.0 --port $PORT",
-    "build-prod": "ng build --configuration production"
+  "ng": "ng",
+  "start": "env-cmd -e production ng serve --host 0.0.0.0 --port $PORT",
+  "build": "ng build",
+  "watch": "ng build --watch --configuration development",
+  "test": "ng test",
+  "build-prod": "ng build --configuration production"
   },
   "private": true,
   "dependencies": {
