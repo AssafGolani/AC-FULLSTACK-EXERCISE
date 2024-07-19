@@ -31,11 +31,11 @@ export class PeopleService {
     });
     return this.http.get<Person[]>(this.apiUrl, { headers }).pipe(
       tap(() => this.loadingSubject.next(true)),
-      finalize(() => this.loadingSubject.next(false)),
       catchError((error) => {
         this.loadingSubject.next(false);
         return throwError(error);
-      })
+      }),
+      finalize(() => this.loadingSubject.next(false))
     );
   }
 
