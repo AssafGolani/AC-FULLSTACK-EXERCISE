@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-production-api-url',
+  apiUrl: 'https://heart-rate-app.onrender.com',
 };
