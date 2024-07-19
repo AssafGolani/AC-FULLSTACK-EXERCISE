@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "dist/full-stack-exercise",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -86,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "full-stack-exercise:build"
+            "browserTarget": "full-stack-exercise:build:production"
           }
         },
         "test": {
