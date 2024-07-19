@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "dist/full-stack-exercise",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -44,12 +44,26 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -58,21 +72,21 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "full-stack-exercise:build:production"
+              "browserTarget": "full-stack-exercise:build:production"
             },
             "development": {
-              "buildTarget": "full-stack-exercise:build:development"
+              "browserTarget": "full-stack-exercise:build:development"
             }
           },
           "options": {
             "proxyConfig": "proxy.conf.json"
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "production"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "full-stack-exercise:build"
+            "browserTarget": "full-stack-exercise:build"
           }
         },
         "test": {
