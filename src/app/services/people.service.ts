@@ -25,7 +25,7 @@ export class PeopleService {
     const heartRates = heartRateString
       .split(';')
       .map((rate) => parseInt(rate, 10));
-    let status: Status = Status.Sleeping;
+    let status: Status | null = null;
     let firstMinuteSleeping: number | null = null;
     let firstMinuteAwake: number | null = null;
     let firstMinuteWorkout: number | null = null;
