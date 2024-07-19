@@ -1,7 +1,7 @@
 {
     "/api": {
       "target": "https://healthrate-6cb6.restdb.io",
-      "secure": false,
+      "secure": true,
       "changeOrigin": true,
       "pathRewrite": {
         "^/api": ""
