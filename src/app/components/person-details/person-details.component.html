@@ -1,7 +1,5 @@
 <mat-card *ngIf="person" @slideInOut>
-  <mat-card-title
-    >{{ person?.FirstName }} {{ person?.LastName }}</mat-card-title
-  >
+  <mat-card-title>{{ person.FirstName }} {{ person.LastName }}</mat-card-title>
   <mat-card-content>
     <app-person-info [person]="person" [bmi]="bmi"></app-person-info>
     <app-heart-rate-info [heartRateData]="heartRateData"></app-heart-rate-info>

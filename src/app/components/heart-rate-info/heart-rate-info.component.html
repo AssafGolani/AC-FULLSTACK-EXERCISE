@@ -1,18 +1,18 @@
 <div *ngIf="heartRateData">
   <app-heart-rate-details
     label="First minute sleeping"
-    [value]="heartRateData.firstMinuteSleeping ?? null"
+    [value]="heartRateData.firstMinuteSleeping"
   ></app-heart-rate-details>
   <app-heart-rate-details
     label="First minute awake"
-    [value]="heartRateData.firstMinuteAwake ?? null"
+    [value]="heartRateData.firstMinuteAwake"
   ></app-heart-rate-details>
   <app-heart-rate-details
     label="First minute workout"
-    [value]="heartRateData.firstMinuteWorkout ?? null"
+    [value]="heartRateData.firstMinuteWorkout"
   ></app-heart-rate-details>
   <app-heart-rate-details
     label="Average heart rate"
-    [value]="heartRateData.averageHeartRate ?? null"
+    [value]="heartRateData.averageHeartRate"
   ></app-heart-rate-details>
 </div>
