@@ -3,20 +3,21 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HeartRateData, Person } from '../models/person.model';
 import { Status } from '../enums/status.enum';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PeopleService {
   private http: HttpClient = inject(HttpClient);
-  private apiUrl = '/api/rest/mypeople';
+  private apiUrl = environment.apiUrl + '/rest/mypeople';
   constructor() {}
 
   getPersonData(): Observable<Person[]> {
     return this.http.get<Person[]>(this.apiUrl, {
       headers: {
         'cache-control': 'no-cache',
-        'x-apikey': 'f534b6365ca29a799b267c496ba312d4247d9',
+        'x-apikey': environment.apiKey,
       },
     });
   }

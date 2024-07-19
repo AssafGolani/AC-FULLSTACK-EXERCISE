@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4200',
+  apiUrl: '/api', // This uses the proxy configuration during development
+  apiKey: '669a66ec70346f45ff068723',
 };
