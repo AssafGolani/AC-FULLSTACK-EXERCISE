@@ -9,12 +9,15 @@
   </div>
 
   <div class="dashboard-content">
-    <app-person-list
-      [people]="people$ | async"
-      [sortBy]="sortBy"
-      [searchQuery]="searchQuery"
-      (personSelected)="togglePerson($event)"
-    ></app-person-list>
+    <ng-container *ngIf="!(loading$ | async)">
+      <app-person-list
+        [people]="people$ | async"
+        [sortBy]="sortBy"
+        [searchQuery]="searchQuery"
+        (personSelected)="togglePerson($event)"
+      ></app-person-list>
+    </ng-container>
+    <app-skeleton-loader *ngIf="loading$ | async"></app-skeleton-loader>
 
     <app-person-details
       [person]="selectedPerson$ | async"

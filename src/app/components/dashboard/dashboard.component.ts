@@ -8,6 +8,7 @@ import { ToolbarComponent } from '../../common/toolbar/toolbar.component';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { SortControlComponent } from '../../common/sort-control/sort-control.component';
 import { SearchControlComponent } from '../../common/search-control/search-control.component';
+import { SkeletonLoaderComponent } from '../../common/skeleton-loader/skeleton-loader.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +20,7 @@ import { SearchControlComponent } from '../../common/search-control/search-contr
     ToolbarComponent,
     SortControlComponent,
     SearchControlComponent,
+    SkeletonLoaderComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
@@ -32,11 +34,14 @@ export class DashboardComponent implements OnInit {
   sortBy: string | null = null;
   searchQuery: string | null = null;
 
+  loading$: Observable<boolean> | undefined;
+
   private selectedPersonSubject = new BehaviorSubject<Person | null>(null);
 
   constructor() {}
 
   ngOnInit(): void {
+    this.loading$ = this.peopleService.loading$;
     this.people$ = this.peopleService.getPersonData();
     this.selectedPerson$ = this.selectedPersonSubject.asObservable();
     this.heartRateData$ = this.selectedPerson$.pipe(
