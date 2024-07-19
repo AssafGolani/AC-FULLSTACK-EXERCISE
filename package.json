@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "env-cmd -e production ng serve --host 0.0.0.0 --port $PORT",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start-prod": "env-cmd -e production ng serve --host 0.0.0.0 --port $PORT",
+    "build-prod": "ng build --configuration production"
   },
   "private": true,
   "dependencies": {
