@@ -18,6 +18,7 @@ body {
   width: 100%;
   max-width: 800px;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .dashboard-content {
@@ -26,6 +27,7 @@ body {
   width: 100%;
   justify-content: center;
   align-items: flex-start;
+  position: relative; /* Add this to ensure the skeleton loader is properly positioned */
 }
 
 app-sort-control,
