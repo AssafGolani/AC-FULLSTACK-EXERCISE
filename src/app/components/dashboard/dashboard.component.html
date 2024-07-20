@@ -9,7 +9,7 @@
   </div>
 
   <div class="dashboard-content">
-    <ng-container *ngIf="!(loading$ | async)">
+    <ng-container *ngIf="!(loading$ | async); else loading">
       <app-person-list
         [people]="people$ | async"
         [sortBy]="sortBy"
@@ -17,7 +17,9 @@
         (personSelected)="togglePerson($event)"
       ></app-person-list>
     </ng-container>
-    <app-skeleton-loader *ngIf="loading$ | async"></app-skeleton-loader>
+    <ng-template #loading>
+      <app-skeleton-loader></app-skeleton-loader>
+    </ng-template>
 
     <app-person-details
       [person]="selectedPerson$ | async"
