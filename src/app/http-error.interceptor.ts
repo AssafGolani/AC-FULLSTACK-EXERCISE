@@ -33,7 +33,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         if (error.status === 404) {
           this.router.navigate(['/404']);
         } else {
-          console.log(errorMessage);
+          console.error(errorMessage);
         }
 
         return throwError(errorMessage);
